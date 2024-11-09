@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "/Nqd81cfVz+f4Q8mSzBFABLh2oMsslhCvLjuf3BY5xg/MH3L5Vwk6YNINWocS9Fm8fY0nWxNDY3VSe9WDrWyOQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\MartT\\OneDrive\\Bureau\\Screen_Draw\\Screen_Draw.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\MartT\\.nuget\\packages\\raylib-cs\\6.1.1\\raylib-cs.6.1.1.nupkg.sha512",
+    "C:\\Users\\MartT\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
