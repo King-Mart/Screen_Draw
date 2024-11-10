@@ -1,10 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using System.Numerics;
-using System.Reflection.Metadata;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
 using Raylib_cs;
 
 class Program {
@@ -12,6 +8,7 @@ class Program {
     static Vector2 villagerPosition;
     static Vector2 villagerSize = new Vector2 (48,48);
     static int currentPopulation;
+    Cell testCell;
 
     static int reallyLongLoop(int range) {
         int i = 0;
