@@ -9,8 +9,8 @@ class Program {
     static Vector2 villagerPosition;
     static Vector2 villagerSize = new Vector2 (48,48);
     static int currentPopulation;
-    static Cell testCell;
     static Vector2 villagerMove;
+    static Grid gridMap = new Grid((float)24, (float)2, Raylib_cs.Color.Blue);
     
     static Random RandomNumGenerator = new Random();
 
@@ -28,7 +28,6 @@ class Program {
         villagerMove = new Vector2 ((float)RandomNumGenerator.Next(-1,2), (float)RandomNumGenerator.Next(-1, 2));
 
         villagerPosition += villagerMove;
-        testCell.size += villagerMove;
         return 1;
 
     }
@@ -38,9 +37,11 @@ class Program {
 
         Raylib_cs.Raylib.ClearBackground(Raylib_cs.Color.RayWhite);
         Raylib_cs.Raylib.DrawText("The current population is : " + currentPopulation.ToString(), 100, 100, 24, Raylib_cs.Color.DarkGray);
-        Raylib_cs.Raylib.DrawText("The current movement vector is : " + villagerMove.ToString(), 130, 130, 24, Raylib_cs.Color.DarkGray);
         Raylib.DrawRectangleV(villagerPosition, villagerSize, Raylib_cs.Color.Purple);
-        testCell.draw();
+        Raylib_cs.Raylib.DrawText("The current movement vector is : " + villagerMove.ToString(), 130, 130, 24, Raylib_cs.Color.DarkGray);
+        Raylib_cs.Raylib.DrawText($"Your mouse is at coordinate : ({Raylib_cs.Raylib.GetMouseX()},{Raylib_cs.Raylib.GetMouseY()})", 170, 170, 24, Raylib_cs.Color.DarkGray);
+
+        gridMap.draw();
 
         Raylib.EndDrawing();
         return 1;
@@ -57,12 +58,12 @@ class Program {
 
         villagerPosition = new Vector2((float)screenWidth / 2, (float)screenHeight / 2);
         currentPopulation = 1;
-        testCell = new Cell(villagerPosition - villagerSize, new Vector2(16, 16), Raylib_cs.Color.Black);
+        gridMap.topLeft = new Vector2 ((float)0, (float)200);
+        gridMap.initGrid(20, 15);
 
         Raylib_cs.Raylib.SetTargetFPS(120);
 
         while (!Raylib_cs.Raylib.WindowShouldClose()) {
-            
             int updateStatus = updateState();
 
             // Console.WriteLine(format:"The frame computed with code " +  updateStatus.ToString());
