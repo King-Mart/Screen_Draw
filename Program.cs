@@ -23,7 +23,8 @@ class Program {
 
     //Update the state of the simulation
     static int updateState() {
-        Console.WriteLine(villagerPosition);
+
+        if (Raylib.IsKeyDown(Raylib_cs.KeyboardKey.Right)) villagerPosition.X += 2.0f;
         return 1;
 
     }
@@ -54,9 +55,9 @@ class Program {
 
         while (!Raylib_cs.Raylib.WindowShouldClose()) {
             int updateStatus = updateState();
-            Console.WriteLine(format:"The frame computed with code " +  updateStatus.ToString());
+            // Console.WriteLine(format:"The frame computed with code " +  updateStatus.ToString());
             int drawStatus = drawState();
-            Console.WriteLine(format:"The frame drew itself with code %d" + drawStatus.ToString());
+            // Console.WriteLine(format:"The frame drew itself with code %d" + drawStatus.ToString());
             
         }
 
