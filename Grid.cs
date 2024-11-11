@@ -18,14 +18,33 @@ class Grid {
         this.gridLenght = gridLenght;
         this.gridHeight = gridHeight;
         this.grid = new Cell[gridHeight, gridLenght];
-        for (int i = 0; i < gridHeight; i++) {
-            for (int j = 0; j < gridLenght; j++) {
-                this.grid[i, j] = new Cell(topLeft + new Vector2 (j * (cellSize + cellSpacing), i * (cellSize + cellSpacing)), new Vector2 (cellSize, cellSize), cellColor);
-                this.grid[i, j].number = i * gridLenght + j;
+        for (int row = 0; row < gridHeight; row++) {
+            for (int column = 0; column < gridLenght; column++) {
+                this.grid[row, column] = new Cell(topLeft + new Vector2 (column * (cellSize + cellSpacing), row * (cellSize + cellSpacing)), new Vector2 (cellSize, cellSize), cellColor);
+                this.grid[row, column].number = row * gridLenght + column;
             }
         }
     }
 
+    /// <summary>
+    /// Returns the size of the grid in pixels. The size is calculated
+    /// by multiplying the cellSize plus cellSpacing by the gridLenght
+    /// and gridHeight, and then subtracting the cellSpacing.
+    /// </summary>
+    /// <returns>The size of the grid in pixels as a Vector2.</returns>
+    public Vector2 getBoundaries() {
+        float width = (float)this.gridLenght;
+        float height = (float)this.gridHeight;
+        width = (this.cellSize + this.cellSpacing) * width - this.cellSpacing;
+        height = (this.cellSize + this.cellSpacing) * height - this.cellSpacing;
+
+
+        return new Vector2(width, height) + topLeft;
+    }
+
+    /// <summary>
+    /// Draws each cell in the grid.
+    /// </summary>
     public void draw() {
         foreach (Cell cell in this.grid) {
             cell.draw();

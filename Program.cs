@@ -27,7 +27,7 @@ class Program {
 
         villagerMove = new Vector2 ((float)RandomNumGenerator.Next(-1,2), (float)RandomNumGenerator.Next(-1, 2));
 
-        villagerPosition += villagerMove;
+        villagerPosition = gridMap.getBoundaries();
         return 1;
 
     }
@@ -38,7 +38,7 @@ class Program {
         Raylib_cs.Raylib.ClearBackground(Raylib_cs.Color.RayWhite);
         Raylib_cs.Raylib.DrawText("The current population is : " + currentPopulation.ToString(), 100, 100, 24, Raylib_cs.Color.DarkGray);
         Raylib.DrawRectangleV(villagerPosition, villagerSize, Raylib_cs.Color.Purple);
-        Raylib_cs.Raylib.DrawText("The current movement vector is : " + villagerMove.ToString(), 130, 130, 24, Raylib_cs.Color.DarkGray);
+        Raylib_cs.Raylib.DrawText("The current position of purple is : " + villagerPosition.ToString(), 130, 130, 24, Raylib_cs.Color.DarkGray);
         Raylib_cs.Raylib.DrawText($"Your mouse is at coordinate : ({Raylib_cs.Raylib.GetMouseX()},{Raylib_cs.Raylib.GetMouseY()})", 170, 170, 24, Raylib_cs.Color.DarkGray);
 
         gridMap.draw();
