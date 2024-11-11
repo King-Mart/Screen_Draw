@@ -11,6 +11,9 @@ class Program {
     static int currentPopulation;
     static Vector2 villagerMove;
     static Grid gridMap = new Grid((float)24, (float)2, Raylib_cs.Color.Blue);
+
+    static Raylib_cs.Color gridMSGColor;
+    static string gridMSG = "";
     
     static Random RandomNumGenerator = new Random();
 
@@ -27,7 +30,17 @@ class Program {
 
         villagerMove = new Vector2 ((float)RandomNumGenerator.Next(-1,2), (float)RandomNumGenerator.Next(-1, 2));
 
-        villagerPosition = gridMap.getBoundaries();
+
+        Vector2 mousePosition = new Vector2((float)Raylib_cs.Raylib.GetMouseX(), (float)Raylib_cs.Raylib.GetMouseY());
+        bool mouseInGrid = gridMap.in_vicinity(mousePosition);
+        if (mouseInGrid) {
+            gridMSG = "The mouse is in the grid";
+            gridMSGColor = Raylib_cs.Color.Green;
+        }
+        else {
+            gridMSG = "The mouse is outside the grid";
+            gridMSGColor = Raylib_cs.Color.Red;
+        }
         return 1;
 
     }
@@ -36,6 +49,7 @@ class Program {
         Raylib.BeginDrawing();
 
         Raylib_cs.Raylib.ClearBackground(Raylib_cs.Color.RayWhite);
+        Raylib_cs.Raylib.DrawText(gridMSG, 50, 50, 24, gridMSGColor);
         Raylib_cs.Raylib.DrawText("The current population is : " + currentPopulation.ToString(), 100, 100, 24, Raylib_cs.Color.DarkGray);
         Raylib.DrawRectangleV(villagerPosition, villagerSize, Raylib_cs.Color.Purple);
         Raylib_cs.Raylib.DrawText("The current position of purple is : " + villagerPosition.ToString(), 130, 130, 24, Raylib_cs.Color.DarkGray);
@@ -60,6 +74,7 @@ class Program {
         currentPopulation = 1;
         gridMap.topLeft = new Vector2 ((float)0, (float)200);
         gridMap.initGrid(20, 15);
+        villagerPosition = gridMap.getBoundaries();
 
         Raylib_cs.Raylib.SetTargetFPS(120);
 
