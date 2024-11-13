@@ -19,11 +19,11 @@ class Grid {
     public void initGrid(int  gridLenght, int gridHeight) {
         this.gridLenght = gridLenght;
         this.gridHeight = gridHeight;
-        this.grid = new Cell[gridHeight, gridLenght];
+        this.grid = new Cell[gridLenght, gridHeight];
         for (int row = 0; row < gridHeight; row++) {
             for (int column = 0; column < gridLenght; column++) {
-                this.grid[row, column] = new Cell(topLeft + new Vector2 (column * (cellSize + cellSpacing), row * (cellSize + cellSpacing)), new Vector2 (cellSize, cellSize), cellColor);
-                this.grid[row, column].number = row * gridLenght + column;
+                this.grid[column, row] = new Cell(topLeft + new Vector2 (column * (cellSize + cellSpacing), row * (cellSize + cellSpacing)), new Vector2 (cellSize, cellSize), cellColor);
+                this.grid[column, row].number = row * gridLenght + column;
             }
         }
         this.initBoundaries();
@@ -53,6 +53,11 @@ class Grid {
         return topLeft.X <= elementPosition.X && elementPosition.X <= bottomRight.X && topLeft.Y <= elementPosition.Y && elementPosition.Y <= bottomRight.Y;
     }
 
+    public int[] getCell(Vector2 position) {
+        Vector2 relativePosition = position - topLeft;
+        return new int[] {(int)(relativePosition.X / (cellSize + cellSpacing)), (int)(relativePosition.Y / (cellSize + cellSpacing))};
+        
+    }
     /// <summary>
     /// Draws each cell in the grid.
     /// </summary>

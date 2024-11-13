@@ -36,6 +36,9 @@ class Program {
         if (mouseInGrid) {
             gridMSG = "The mouse is in the grid";
             gridMSGColor = Raylib_cs.Color.Green;
+            int[] cellCoord = gridMap.getCell(mousePosition);
+            gridMap.grid[cellCoord[0], cellCoord[1]].color = Color.Green;
+
         }
         else {
             gridMSG = "The mouse is outside the grid";
