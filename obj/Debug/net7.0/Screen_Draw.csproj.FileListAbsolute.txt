@@ -14,9 +14,10 @@ C:\Users\MartT\OneDrive\Bureau\Screen_Draw\obj\Debug\net7.0\Screen_Draw.Generate
 C:\Users\MartT\OneDrive\Bureau\Screen_Draw\obj\Debug\net7.0\Screen_Draw.AssemblyInfoInputs.cache
 C:\Users\MartT\OneDrive\Bureau\Screen_Draw\obj\Debug\net7.0\Screen_Draw.AssemblyInfo.cs
 C:\Users\MartT\OneDrive\Bureau\Screen_Draw\obj\Debug\net7.0\Screen_Draw.csproj.CoreCompileInputs.cache
-C:\Users\MartT\OneDrive\Bureau\Screen_Draw\obj\Debug\net7.0\Screen_Draw.csproj.CopyComplete
 C:\Users\MartT\OneDrive\Bureau\Screen_Draw\obj\Debug\net7.0\Screen_Draw.dll
 C:\Users\MartT\OneDrive\Bureau\Screen_Draw\obj\Debug\net7.0\refint\Screen_Draw.dll
 C:\Users\MartT\OneDrive\Bureau\Screen_Draw\obj\Debug\net7.0\Screen_Draw.pdb
 C:\Users\MartT\OneDrive\Bureau\Screen_Draw\obj\Debug\net7.0\Screen_Draw.genruntimeconfig.cache
 C:\Users\MartT\OneDrive\Bureau\Screen_Draw\obj\Debug\net7.0\ref\Screen_Draw.dll
+C:\Users\MartT\OneDrive\Bureau\Screen_Draw\obj\Debug\net7.0\Screen_Draw.sourcelink.json
+C:\Users\MartT\OneDrive\Bureau\Screen_Draw\obj\Debug\net7.0\Screen_D.CF780381.Up2Date

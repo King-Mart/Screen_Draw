@@ -17,6 +17,14 @@ class Program {
     
     static Random RandomNumGenerator = new Random();
 
+    static int[]? activeCell = null;
+
+    static Color[] colorCode = {Color.Green, Color.Red};
+    
+    
+
+    
+
     static int reallyLongLoop(int range) {
         int i = 0;
         while (i < range){
@@ -37,10 +45,24 @@ class Program {
             gridMSG = "The mouse is in the grid";
             gridMSGColor = Raylib_cs.Color.Green;
             int[] cellCoord = gridMap.getCell(mousePosition);
-            gridMap.grid[cellCoord[0], cellCoord[1]].color = Color.Green;
+            // Check if the cell is already hovered
+            if ( activeCell != null && !(activeCell[0] == cellCoord[0] && cellCoord[1] == activeCell[1])) {
+                Console.WriteLine($"cell cord : ({cellCoord[0]}, {cellCoord[1]}),  active cell :({activeCell[0]}, {activeCell[1]})");
+                gridMap.grid[cellCoord[0], cellCoord[1]].color = Color.Green;
+                gridMap.grid[activeCell[0], activeCell[1]].color = gridMap.cellColor;
+                activeCell = cellCoord;
+            }
+            else if (activeCell == null) {
+                gridMap.grid[cellCoord[0], cellCoord[1]].color = Color.Green;
+                activeCell = cellCoord;
+            }
 
         }
         else {
+            if (activeCell != null) {
+                gridMap.grid[activeCell[0], activeCell[1]].color = gridMap.cellColor;
+                activeCell = null;
+            }
             gridMSG = "The mouse is outside the grid";
             gridMSGColor = Raylib_cs.Color.Red;
         }
@@ -64,7 +86,7 @@ class Program {
         return 1;
     }
 
-    static void Main()
+    static int Main()
     {
         const int screenWidth = 800;
         const int screenHeight = 600;
@@ -88,13 +110,19 @@ class Program {
             int drawStatus = drawState();
             // Console.WriteLine(format:"The frame drew itself with code %d" + drawStatus.ToString());
             
+            
+            
         }
 
         
 
         Raylib_cs.Raylib.CloseWindow();
 
+        return 1;
+
     }
+
+    
 
 
 }
