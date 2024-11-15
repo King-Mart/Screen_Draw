@@ -20,7 +20,10 @@ class Program {
     static int[]? activeCell = null;
 
     static Color[] colorCode = {Color.Green, Color.Red};
-    
+    static int[,] colorStory = new int[2,2];
+    static int historyCount = 0;
+    //This is the history of previously visited cells : { {cellCoord1}, {cellCoor2}}
+
     
 
     
@@ -32,7 +35,20 @@ class Program {
         }
         return 1;
     }
-
+    /// <summary>
+/// Colors the cells in the grid based on their history.
+/// </summary>
+/// <param name="historyCount">The number of cells to color.</param>
+/// <param name="colorStory">The history of cell coordinates to be colored.</param>
+/// <param name="grid">The grid containing the cells.</param>
+/// <param name="colorCode">The colors to apply to each cell in history.</param>
+static void colorHistory(int historyCount, int[,] colorStory, Grid grid, Color[] colorCode) {
+    // Iterate over each entry in the color history
+    for (int i = 0; i < historyCount; i++) {
+        // Apply the corresponding color to the cell in the grid
+        grid.grid[colorStory[i,0], colorStory[i,1]].color = colorCode[i];
+    }
+}
     //Update the state of the simulation
     static int updateState() {
 
@@ -45,17 +61,40 @@ class Program {
             gridMSG = "The mouse is in the grid";
             gridMSGColor = Raylib_cs.Color.Green;
             int[] cellCoord = gridMap.getCell(mousePosition);
-            // Check if the cell is already hovered
-            if ( activeCell != null && !(activeCell[0] == cellCoord[0] && cellCoord[1] == activeCell[1])) {
-                Console.WriteLine($"cell cord : ({cellCoord[0]}, {cellCoord[1]}),  active cell :({activeCell[0]}, {activeCell[1]})");
-                gridMap.grid[cellCoord[0], cellCoord[1]].color = Color.Green;
-                gridMap.grid[activeCell[0], activeCell[1]].color = gridMap.cellColor;
-                activeCell = cellCoord;
+
+
+            if (historyCount == 0) {
+                historyCount += 1;
+                colorStory[0,0] = cellCoord[0];
+                colorStory[0,1] = cellCoord[1];
+                colorHistory(historyCount, colorStory, gridMap, colorCode);
             }
-            else if (activeCell == null) {
-                gridMap.grid[cellCoord[0], cellCoord[1]].color = Color.Green;
-                activeCell = cellCoord;
+            else {
+
+
+                if (cellCoord[0] != colorStory[0,0] || cellCoord[1] != colorStory[0,1]) {
+                    if (historyCount == 1) { historyCount += 1; }
+                    if (historyCount == 2) {  gridMap.grid[colorStory[1,0], colorStory[1,1]].color = gridMap.cellColor; }
+                    colorStory[1,0] = colorStory[0,0];
+                    colorStory[1,1] = colorStory[0,1];
+                    colorStory[0,0] = cellCoord[0];
+                    colorStory[0,1] = cellCoord[1];
+                    colorHistory(historyCount, colorStory, gridMap, colorCode);
+                        
+                }
+
             }
+            // // Check if the cell is already hovered
+            // if ( activeCell != null && !(activeCell[0] == cellCoord[0] && cellCoord[1] == activeCell[1])) {
+            //     Console.WriteLine($"cell cord : ({cellCoord[0]}, {cellCoord[1]}),  active cell :({activeCell[0]}, {activeCell[1]})");
+            //     gridMap.grid[cellCoord[0], cellCoord[1]].color = Color.Green;
+            //     gridMap.grid[activeCell[0], activeCell[1]].color = gridMap.cellColor;
+            //     activeCell = cellCoord;
+            // }
+            // else if (activeCell == null) {
+            //     gridMap.grid[cellCoord[0], cellCoord[1]].color = Color.Green;
+            //     activeCell = cellCoord;
+            // }
 
         }
         else {

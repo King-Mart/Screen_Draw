@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Screen_Draw")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7f8b3ed7e7e9972baeb31f4f146c8df04e39ed81")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f1fb7dfdca21e30cc9953689a27d910ae28015e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Screen_Draw")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Screen_Draw")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
